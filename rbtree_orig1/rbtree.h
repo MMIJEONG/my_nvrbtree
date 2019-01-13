@@ -25,7 +25,7 @@ typedef struct simul_rb_root {
 } simul_rb_root;
 
 unsigned int total_read=0;
-unsigned int total_count=0;
+unsigned int total_write=0;
 
 simul_rb_node *parent_of(simul_rb_node *node);
 simul_rb_node *right_of(simul_rb_node *node);
