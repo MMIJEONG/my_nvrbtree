@@ -1,37 +1,41 @@
 #include<stdio.h>
+#include<string.h>
 #include<stdlib.h>
 #include<time.h>
 
 #define MAX 100
 
-int* arr;
+unsigned long * arr;
 
-void swap(int i, int j)
+void swap(unsigned long i, unsigned long j)
 {
-	int tmp = arr[i];
+	unsigned long tmp = arr[i];
 	arr[i] = arr[j];
 	arr[j] = tmp;
 }
 
 int main(int argc, char** argv)
 {
-	int i;
-	int a, b, max;
-	if (argc < 2) {
-		printf("Error: Usage ./trc_gen footprint\n");
+	unsigned long i;
+	unsigned long a, b, max, stride;
+
+	if (argc < 3) {
+		printf("Error: Usage ./trc_gen footprint stride\n");
 		return 0;
 	}
 
 	max = atoi(argv[1]);
-
+	stride = atoi(argv[2]);
 
 	// 	
-	arr = (int*) malloc (sizeof(int) * max);
+	arr = (unsigned long*) malloc (sizeof(unsigned long) * max);
 	if(!arr){
 		printf("Failed to alloc memory\n");
 		return -1;
 	}
-	for(i = 0; i < max; i++)
+	memset(arr, 0, max);
+	//for(i = 0; i < max; i++)
+	for(i = 0; i < max; i+=stride)
 		arr[i] = i;
 
 	srand((unsigned)time(NULL));
@@ -45,7 +49,7 @@ int main(int argc, char** argv)
 
 	// print 
 	for (i = 0; i < max; i++)
-		printf("%d \n", arr[i]);
+		if(arr[i]) printf("%lu \n", arr[i]);
 
 	return 0;
 }
