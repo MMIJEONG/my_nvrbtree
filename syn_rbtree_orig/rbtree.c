@@ -709,8 +709,7 @@ int main(int argc, char *argv[])
 	if(strcmp(argv[2], "synthetic")==0){
 		printf("--run synthetic mode --\n");
 		rvalue = (long long int *)malloc(sizeof(long long int) * WSS);
-		strcpy(rfn,"/home/lmj/change_nvrbtree/microbench-v/wss/rvalue_");
-		strcat(rfn,argv[3]);
+		strcpy(rfn,argv[3]);
 		fp = fopen(rfn, "r");
 		for(i=0; i<WSS; i++)
 			fscanf(fp, "%lld", &rvalue[i]);
@@ -755,6 +754,7 @@ int main(int argc, char *argv[])
 	printf(" Total count/write: %d\n",total_write);
 	printf(" Elapsed time: %6.2f s\n", end.tv_sec - start.tv_sec + (end.tv_usec - start.tv_usec) / 1000000.0);
 
+ printf(" Elapese time: %lf us\n",((end.tv_sec - start.tv_sec)*1000000.0)+(end.tv_usec - start.tv_usec));
 
 
 	// file read
